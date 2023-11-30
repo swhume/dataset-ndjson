@@ -40,7 +40,7 @@ The second case replaces the use of the dataset OID, or ItemGroupDef OID, as the
 attribute. Now the dataset metadata includes an OID attribute that holds a value that must match the OID
 used in the Define-XML. 
 
-![NDJSON Proposed Changes](https://github.com/swhume/dataset-ndjson/blob/master/docs/ndjson-example.png?raw=true)
+![NDJSON Proposed Changes](https://github.com/swhume/dataset-ndjson/blob/master/docs/ndjson-example.PNG?raw=true)
 
 ### Examples
 
