@@ -29,24 +29,28 @@ def convert_json_2_ndjson(json_filename, nd_json_filename, dataset_oid):
     with open(json_filename, 'r') as f:
         json_data = json.loads(f.read())
 
+    if "clinicalData" in json_data:
+        dataset_type = "clinicalData"
+    else:
+        dataset_type = "referenceData"
+
     with open(nd_json_filename, 'w') as f:
         writer = ndjson.writer(f, ensure_ascii=False)
         writer.writerow(create_odm_metadata(json_data))
-        writer.writerow(create_dataset_metadata(json_data, dataset_oid))
-        writer.writerow({"items": json_data["clinicalData"]["itemGroupData"][dataset_oid]["items"]})
-        for row in json_data["clinicalData"]["itemGroupData"][dataset_oid]["itemData"]:
+        writer.writerow(create_dataset_metadata(json_data, dataset_oid, dataset_type))
+        writer.writerow({"items": json_data[dataset_type]["itemGroupData"][dataset_oid]["items"]})
+        for row in json_data[dataset_type]["itemGroupData"][dataset_oid]["itemData"]:
             writer.writerow(row)
 
 
-def create_dataset_metadata(json_data, dataset_oid):
+def create_dataset_metadata(json_data, dataset_oid, dataset_type):
     keys = ["studyOID", "metaDataVersionOID", "metaDataRef", "records", "name", "label"]
-    line = {"datasetType": "clinicalData", "OID": dataset_oid}
+    line = {"datasetType": dataset_type, "OID": dataset_oid}
     for key in keys:
-        # TODO only works for clinicalData currently - will need to add logic for referenceData
-        if key in json_data["clinicalData"]:
-            line[key] = json_data["clinicalData"][key]
-        elif key in json_data["clinicalData"]["itemGroupData"][dataset_oid]:
-            line[key] = json_data["clinicalData"]["itemGroupData"][dataset_oid][key]
+        if key in json_data[dataset_type]:
+            line[key] = json_data[dataset_type][key]
+        elif key in json_data[dataset_type]["itemGroupData"][dataset_oid]:
+            line[key] = json_data[dataset_type]["itemGroupData"][dataset_oid][key]
     return line
 
 
@@ -60,7 +64,8 @@ def create_odm_metadata(json_data):
 
 
 if __name__ == '__main__':
-    json_datasets = ["vs", "ae", "cm", "dd", "dm", "ds", "ec", "ex", "fa", "ie", "lb", "vs"]
+    json_datasets = ["vs", "ae", "cm", "dd", "dm", "ds", "ec", "ex", "fa", "ie", "lb", "vs", "di", "ft", "mh", "oe",
+                     "qssl", "relrec", "rs", "se", "sv", "ta", "suppdm", "ti", "ts", "tv"]
     for dataset in json_datasets:
         dataset_oid = "IG." + dataset.upper()
         filename = os.path.join(os.getcwd(), "data", dataset + ".json")
