@@ -4,15 +4,15 @@
 These programs generate NDJSON file from existing example Dataset-JSON datasets to create the dataset-ndjson datasets.
 
 The purpose of dataset-ndjson, or new-line delimited JSON, is to simplify streaming large datasets so that the dataset
-can easily be read or written one row at a time. Most languages have libraries that can read a large
-JSON dataset as a stream, but in cases where such a library is not available the ndjson format makes
-it easy for the program read and write a row at a time.
+can easily be read or written one row at a time. Most languages have libraries that can read a large JSON dataset as a 
+stream, but in cases where such a library is not available the ndjson format makes it easy for the program read and 
+write a row at a time. Adding support for ndjson to the Dataset-JSON standard is currently under discussion.
 
-The programs are examples to demonstrate a proof-of-concept dataset-ndjson format. The 
-json2ndjson.py program retrieves a set of the Dataset-JSON SDTM example datasets from the
-cdisc-org/DataExchange-DatasetJson GitHub repository and converts them to an ndjson format.
-The ndjson2csv.py program converts the example dataset-ndjson files to csv files as a
-simple test.
+The programs are examples to demonstrate a proof-of-concept dataset-ndjson format. The json2ndjson.py program retrieves 
+a set of the Dataset-JSON SDTM example datasets from the cdisc-org/DataExchange-DatasetJson GitHub repository and 
+converts them to an ndjson format. The ndjson2csv.py program converts the example dataset-ndjson files to csv files as a
+simple test. The ndjson2json.py program converts the ndjson datasets back into their original json format enabling 
+comparisons to the original Dataset-JSON examples for testing purposes.
 
 ### The dataset-ndjson format
 

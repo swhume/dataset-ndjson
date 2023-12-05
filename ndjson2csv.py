@@ -3,7 +3,7 @@ import ndjson
 import os
 
 
-def convert_ndjson_2_csv(csv_filename, nd_json_filename, dataset_name):
+def convert_ndjson_2_csv(csv_filename, nd_json_filename):
     with open(nd_json_filename, 'r') as f_in, open(csv_filename, 'w', newline='') as f_out:
         dataset_writer = csv.writer(f_out, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         reader = ndjson.reader(f_in)
@@ -20,4 +20,4 @@ if __name__ == '__main__':
     for dataset in ndjson_datasets:
         csv_file = os.path.join(os.getcwd(), "data", dataset + ".csv")
         ndjson_file = os.path.join(os.getcwd(), "data", dataset + ".ndjson")
-        convert_ndjson_2_csv(csv_file, ndjson_file, dataset)
+        convert_ndjson_2_csv(csv_file, ndjson_file)
