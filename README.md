@@ -42,6 +42,6 @@ are available in the examples/NDJSON folder and use .NDJSON as the extension.
 * NDJSON2JSON.py: Converts the NDJSON datasets in this project back into JSON format. Used as part of round-trip testing.
 * NDJSON2csv: Coverts the NDJSON datasets in this project into the csv format.
 * validate_NDJSON.py: Validates the NDJSON example files against a LinkMl model.
-* validate_JSON.pyL Validates the JSON example files against a LinkML model.
+* validate_JSON.py: Validates the JSON example files against a LinkML model.
 
 
