@@ -1,5 +1,7 @@
 # NDJSON Representation of Dataset-JSON
 
+### In the middle of updating NDJSON
+
 ### Introduction
 
 The purpose of the NDJSON, or new-line delimited JSON, representation of Dataset-JSON is to simplify streaming 
@@ -24,18 +26,20 @@ line is valid JSON. The JSON is delimited by the newline character (\n or 0x0A) 
 return character (\r or 0x0D). UTF-8 encoding is expected.
 
 The Dataset-JSON NDJSON format is created from the Dataset-JSON standard by:
-* Row 1. Create 1 JSON object from the dataset attributes. Includes all by the columns and rows attributes.
-* Row 2. Create 1 JSON object that contains an array of variable metadata definitions taken from the columns attribute.
-* Row 3 - n. Create 1 array per data row
+* Row 1. Create 1 JSON object from the metadata, including the dataset attributes and column definitions.
+* Row 2 - n. Create 1 array per data row
 
-![NDJSON Proposed Changes](/docs/ndjson-json-structure.JPG?raw=true)
+All the metadata is in the first row of the dataset and everything else is a data row.
 
-Each row can be parsed and processed as standalone JSON text.
+![NDJSON Proposed Changes](/doc/img/ndjson-json-structure.JPG?raw=true)
+
+Each row can be parsed and processed as standalone JSON.
 
 ### Examples
 
 The NDJSON example datasets have been converted from the JSON versions, so they contain the same content. The examples 
 are available in the examples/NDJSON folder and use .NDJSON as the extension.
+
 
 ### Programs
 * JSON2NDJSON.py: Retrieves the example datasets from the CDISC DataExchange-DatasetJSON GitHub repo and converts them from JSON to NDJSON.
