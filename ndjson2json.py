@@ -8,7 +8,7 @@ from ndjsonlib.ndjson_data_file import NdjsonDataFile
 
 
 def convert_ndjson_2_json(dataset_name, standard, json_filename):
-    ndjson_path = os.path.join(os.getcwd(), "data", standard)
+    ndjson_path = os.path.join(os.getcwd(), "data", standard + "-ndjson")
     ndj = NdjsonDataFile(ds_name=dataset_name, directory=ndjson_path)
     ndj.read_dataset()
     ndj.write_dataset_json(json_filename)

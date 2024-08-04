@@ -22,7 +22,7 @@ example datasets.
 ### The Dataset-JSON NDJSON format
 
 [NDJSON](https://github.com/NDJSON/NDJSON-spec) is a standard for delimiting JSON in stream protocols. In NDJSON, each
-line is valid JSON. The JSON is delimited by the newline character (\n or 0x0A) which may be preceeded by a carriage
+line is valid JSON. The JSON is delimited by the newline character (\n or 0x0A) which may be preceded by a carriage
 return character (\r or 0x0D). UTF-8 encoding is expected.
 
 The Dataset-JSON NDJSON format is created from the Dataset-JSON standard by:
@@ -40,12 +40,11 @@ Each row can be parsed and processed as standalone JSON.
 The NDJSON example datasets have been converted from the JSON versions, so they contain the same content. The examples 
 are available in the examples/NDJSON folder and use .NDJSON as the extension.
 
-
 ### Programs
-* JSON2NDJSON.py: Retrieves the example datasets from the CDISC DataExchange-DatasetJSON GitHub repo and converts them from JSON to NDJSON.
-* NDJSON2JSON.py: Converts the NDJSON datasets in this project back into JSON format. Used as part of round-trip testing.
-* NDJSON2csv: Coverts the NDJSON datasets in this project into the csv format.
-* validate_NDJSON.py: Validates the NDJSON example files against a LinkMl model.
-* validate_JSON.py: Validates the JSON example files against a LinkML model.
+* json2ndjson.py: Retrieves the example datasets from the CDISC DataExchange-DatasetJSON GitHub repo and converts them from JSON to NDJSON.
+* ndjson2json.py: Converts the NDJSON datasets in this project back into JSON format. Used as part of round-trip testing.
+* ndjson2csv: Coverts the NDJSON datasets in this project into the csv format.
+* validate_ndjson.py: Validates the NDJSON example files against a LinkMl model.
+* validate_ndjson_json_schema.py: Validates the NDJSON example files against a JSON schema generated from the LinkML model.
 
 

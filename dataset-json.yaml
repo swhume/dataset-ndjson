@@ -1,3 +1,16 @@
+---
+id: https://cdisc.org/dataset-json/model
+name: dataset-json
+description: >-
+  Model for Dataset-JSON v1.1
+prefixes:
+  dataset: https://cdisc.org/dataset-json/model/
+  linkml: https://w3id.org/linkml/
+default_prefix: dataset
+default_range: string
+imports:
+  - linkml:types
+
 classes:
   Dataset:
     tree_root: true
@@ -21,6 +34,7 @@ classes:
       sourceSystem:
         description: The computer system or database management system that is the source of the information in this file.
         required: false
+        inlined: true
         range: SourceSystem
       studyOID:
         description: See ODM definition for study OID (ODM/Study/@OID).
@@ -62,6 +76,7 @@ classes:
         inlined: true
         inlined_as_list: true
         range: Row
+
   SourceSystem:
     description: The information system from which the content of this dataset was sourced
     attributes:

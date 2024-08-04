@@ -14,12 +14,10 @@ def validate_dataset(dataset_filename, standard) -> None:
         data_row = {}
         reader = ndjson.reader(f)
         for line_num, json_line in enumerate(reader, 1):
-            if line_num > 2:
+            if line_num > 1:
                 # LinkML schema expects an object and not a naked list
                 data_row["rows"] = json_line
                 report = validate(data_row, schema="dataset-ndjson.yaml", target_class="RowData")
-            elif line_num == 2:
-                report = validate(json_line, schema="dataset-ndjson.yaml", target_class="ColumnMetadata")
             elif line_num == 1:
                 report = validate(json_line, schema="dataset-ndjson.yaml", target_class="DatasetMetadata")
             else:
@@ -34,15 +32,16 @@ def validate_dataset(dataset_filename, standard) -> None:
             print(f"The following DSJ NDJSON lines from {standard} file {dataset_filename} are invalid {invalid_lines}")
 
 
-def convert_example_datasets(datasets, standard) -> None:
+def validate_example_datasets(datasets, standard) -> None:
     for dataset in datasets:
-        dataset_filename = os.path.join(os.getcwd(), "data", standard, dataset + ".ndjson")
+        dataset_filename = os.path.join(os.getcwd(), "data", standard + "-ndjson", dataset + ".ndjson")
         validate_dataset(dataset_filename, standard)
 
 
 if __name__ == '__main__':
-    # with open(".\\data\\dataset-list.json") as f:
-    #     ds_lists = json.load(f)
-    # for standard, datasets in ds_lists.items():
-    #     convert_example_datasets(datasets, standard)
-    convert_example_datasets(["ae", "cm", "relrec", "suppdm", "fa", "tv", "vs"], "sdtm")
+    with open(".\\data\\dataset-list.json") as f:
+        ds_lists = json.load(f)
+    for standard, datasets in ds_lists.items():
+        validate_example_datasets(datasets, standard)
+    # validate_example_datasets(["ae", "cm", "relrec", "suppdm", "fa", "tv", "vs"], "sdtm-ndjson")
+    # validate_example_datasets(["dd"], "sdtm-ndjson")
