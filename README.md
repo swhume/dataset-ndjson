@@ -31,7 +31,7 @@ The Dataset-JSON NDJSON format is created from the Dataset-JSON standard by:
 
 All the metadata is in the first row of the dataset and everything else is a data row.
 
-![NDJSON Proposed Changes](/doc/img/ndjson-json-structure.JPG?raw=true)
+![NDJSON Proposed Changes](/docs/img/ndjson-json-structure.JPG?raw=true)
 
 Each row can be parsed and processed as standalone JSON.
 
