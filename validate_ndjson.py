@@ -1,7 +1,7 @@
 from linkml.validator import validate
 import ndjson
 import json
-import os
+from pathlib import Path
 
 """
 Validates all Dataset-JSON v1.1 NDJSON examples. Because it validates 1 line at a time this runs slowly. 
@@ -34,14 +34,13 @@ def validate_dataset(dataset_filename, standard) -> None:
 
 def validate_example_datasets(datasets, standard) -> None:
     for dataset in datasets:
-        dataset_filename = os.path.join(os.getcwd(), "data", standard + "-ndjson", dataset + ".ndjson")
+        dataset_filename = Path.cwd() / "data" / "ndjson" /f"{standard}-ndjson" / f"{dataset}.ndjson"
         validate_dataset(dataset_filename, standard)
 
 
 if __name__ == '__main__':
-    with open(".\\data\\dataset-list.json") as f:
+    datalist_file_path = Path.cwd() / "data" / "dataset-list.json"
+    with open(datalist_file_path) as f:
         ds_lists = json.load(f)
     for standard, datasets in ds_lists.items():
         validate_example_datasets(datasets, standard)
-    # validate_example_datasets(["ae", "cm", "relrec", "suppdm", "fa", "tv", "vs"], "sdtm-ndjson")
-    # validate_example_datasets(["dd"], "sdtm-ndjson")
