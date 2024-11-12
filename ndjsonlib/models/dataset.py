@@ -37,7 +37,6 @@ class DatasetMetadata(BaseModel):
     metaDataVersionOID: Optional[str] = None
     metaDataRef: Optional[str] = None
     itemGroupOID: str
-    isReferenceData: Optional[bool] = False
     records: int
     name: str
     label: str
