@@ -28,30 +28,6 @@ class DataFile:
             return rows
         return DS.RowData(rows=rows)
 
-    # def read_file_to_list(self) -> list:
-    #     """ reads entire data file into a list of lists """
-    #     rows = []
-    #     with open(self.filename) as f:
-    #         for line in f:
-    #             rows.append(json.loads(line))
-    #     return rows
-
-    # def read_chunk_to_list(self, start_row: int = None) -> list:
-    #     """ reads a chunk_size number of rows into a list of lists starting from start_row """
-    #     rows = []
-    #     if start_row is None:
-    #         start_row = self.current_row + 1
-    #     with open(self.filename, mode='r') as f:
-    #         line_count = 0
-    #         for line in f:
-    #             if line_count >= start_row:
-    #                 rows.append(json.loads(line))
-    #             line_count += 1
-    #             if self.chunk_size and line_count >= self.chunk_size:
-    #                 break
-    #     self.current_row = start_row + len(rows)
-    #     return rows
-
     def read_chunk(self, start_row: int = None, is_return_list: bool = False) -> list:
         """
         reads a chunk_size number of rows into a RowData instance starting from start_row
